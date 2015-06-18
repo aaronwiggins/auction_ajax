@@ -17,3 +17,14 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+function callUpdate() {
+  setInterval(updateBids, 2000);
+};
+
+function updateBids() {
+  console.log("update");
+  response = $.ajax({ url: "http://localhost:3000/refresh"});
+}
+
+$(callUpdate)

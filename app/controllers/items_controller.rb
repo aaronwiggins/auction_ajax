@@ -2,6 +2,12 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   # GET /items
+  def refresh
+    @item = Item.find_by_id(session[:item_id])
+    @bid = Bid.new(item: @item, amount: @item.next_bid_amount)
+    render 'bids/create'
+  end
+
   def index
     @items = Item.all
   end
@@ -50,6 +56,7 @@ class ItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])
+      session[:item_id] = @item.id
     end
 
     # Only allow a trusted parameter "white list" through.
