@@ -19,7 +19,7 @@
 $(function(){ $(document).foundation(); });
 
 function callUpdate() {
-  setInterval(updateBids, 2000);
+  setInterval(updateBids, 15000);
 };
 
 function updateBids() {
